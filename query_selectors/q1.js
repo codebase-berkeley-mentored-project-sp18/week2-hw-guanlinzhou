@@ -12,9 +12,21 @@ You can test your function by opening index.html in your browser and viewing the
 
 function getElementsByClassName(strClassName) {
   //=====================
-  // YOUR CODE HERE
-  //=====================
-  return;
+  var result = [];
+  function treeWalker(node, result, className){
+    var nodexD = node.childNodes
+    for (var i = 0; i < nodexD.length; i++){
+        var classes = nodexD[i].classList;
+        if (classes && classes.contains(className)) {
+            result.push(nodexD[i]);
+        }
+        if (nodexD[i].childNodes[0] != null){
+            treeWalker(nodexD[i], result, className);
+        }
+    }
+  }
+  treeWalker(document, result, strClassName);
+  return result;
 }
 
 
